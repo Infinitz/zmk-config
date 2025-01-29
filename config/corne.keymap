@@ -14,6 +14,14 @@
 #define TRI 3
 
 / {
+    &mm {
+        compatible = "zmk,behavior-mod-morph";
+        label = "MOD_MORPH_CLEAR";
+        #binding-cells = <1>;
+        bindings = <&none>, <&kp @0>;
+        mods = <(MOD_LSFT|MOD_RSFT|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+    };
+
     conditional_layers {
         compatible = "zmk,conditional-layers";
 
@@ -64,13 +72,13 @@
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮
         //│          │  !       │  @       │ #       │  $        │ %        │   │ ^        │  &       │ *        │ (        │ )        │          │
-             &trans     &kp EXCL   &kp AT    &kp HASH   &kp DLLR   &kp PRCNT      &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR    &trans
+             &trans     &mm EXCL   &mm AT    &mm HASH   &mm DLLR   &mm PRCNT      &mm CARET  &mm AMPS   &mm ASTRK  &mm LPAR   &mm RPAR    &trans
         //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
         //│          │ '        │ "        │ \        │ /        │          │   │ =        │ ?        │ `        │ [        │ ]        │          │
-             &trans    &kp SQT    &kp DQT    &kp BSLH   &kp FSLH    &trans        &kp EQUAL  &kp QMARK  &kp GRAVE  &kp LBKT   &kp RBKT    &trans
+             &trans    &mm SQT    &mm DQT    &mm BSLH   &mm FSLH    &trans        &mm EQUAL  &mm QMARK  &mm GRAVE  &mm LBKT   &mm RBKT    &trans
         //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
         //│          │ │        │          │          │          │          │   │          │ +        │ ~        │ {        │ }        │          │
-             &trans    &kp PIPE    &trans     &trans     &trans     &trans         &trans    &kp PLUS   &kp TILDE  &kp LBRC   &kp RBRC    &trans
+             &trans    &mm PIPE    &trans     &trans     &trans     &trans         &trans    &mm PLUS   &mm TILDE  &mm LBRC   &mm RBRC    &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┴──────────┴──────────╯
                                               &trans     &trans     &trans         &trans     &trans     &trans
         //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
