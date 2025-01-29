@@ -27,56 +27,70 @@
         compatible = "zmk,keymap";
 
         default_layer {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BSPC |
-            // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-            // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-            //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
-
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E     &kp R  &kp T        &kp Y    &kp U  &kp I      &kp O    &kp P     &kp ESCAPE
-&kp LCTRL  &kp A  &kp S  &kp D     &kp F  &kp G        &kp H    &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
-&kp LSHFT  &kp Z  &kp X  &kp C     &kp V  &kp B        &kp N    &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp LEFT_ALT
-                         &kp LGUI  &mo 1  &kp SPACE    &kp RET  &mo 2  &kp BSPC
+        //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮
+        //│  TAB     │  Q       │  W       │  E       │  R       │  T       │   │  Y       │  U       │  I       │  O       │  P       │  ESC     │
+             &kp TAB    &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P      &kp ESCAPE
+        //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│ CTRL     │  A       │  S       │  D       │  F       │  G       │   │  H       │  J       │  K       │  L       │ Ö        │ Ä        │
+            &kp LCTRL   &kp A      &kp S      &kp D      &kp F      &kp G          &kp H      &kp J      &kp K      &kp L     &kp SEMI   &kp SQT
+        //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│ SHIFT    │  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , ;      │ . :      │ - _      │ ALT      │
+            &kp LSHFT   &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M     &kp COMMA  &kp DOT    &kp FSLH   &kp LEFT_ALT
+        //╰──────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┴──────────┴──────────╯
+                                             &kp LGUI    &mo 1     &kp SPACE       &kp RET    &mo 2     &kp BSPC
+        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
             >;
         };
 
         lower_layer {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
-            // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-            // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
-
             bindings = <
-&trans  &kp N1   &kp N2    &kp N3           &kp N4      &kp N5    &kp N6  &kp N7    &kp N8         &kp N9        &kp N0     &trans
-&trans  &kp DEL  &kp CAPS  &kp PRINTSCREEN  &kp INSERT  &trans    &trans  &kp LEFT  &kp DOWN       &kp UP_ARROW  &kp RIGHT  &trans
-&trans  &trans   &trans    &trans           &trans      &trans    &trans  &kp HOME  &kp PAGE_DOWN  &kp PAGE_UP   &kp END    &trans
-                           &trans           &trans      &trans    &trans  &trans    &trans
+        //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮
+        //│          │  1       │  2       │  3       │  4       │  5       │   │  6       │  7       │  8       │  9       │  0       │          │
+             &trans     &kp N1     &kp N2     &kp N3     &kp N4     &kp N5         &kp N6     &kp N7     &kp N8     &kp N9     &kp N0     &trans
+        //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│          │  DELETE  │ CapsLock │ PrintSc  │  INSERT  │          │   │          │ LEFT     │ DOWN     │  UP      │ RIGHT    │          │
+             &trans     &kp DEL   &kp CAPS   &kp PSCRN   &kp INS    &trans         &trans    &kp LARW   &kp DARW   &kp UARW   &kp RARW    &trans
+        //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│          │          │          │          │          │          │   │          │          │ PAGE DN  │ PAGE UP  │  END     │          │
+             &trans     &trans     &trans     &trans     &trans     &trans         &trans     &kp HOME  &kp PG_DN  &kp PG_UP   &kp END    &trans
+        //╰──────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┴──────────┴──────────╯
+                                              &trans     &trans     &trans         &trans     &trans     &trans
+        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
             >;
         };
 
         raise_layer {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-            // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-            // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
-
             bindings = <
-&trans  &kp EXCL          &kp AT             &kp HASH       &kp DLLR   &kp PRCNT    &kp CARET  &kp AMPS      &kp ASTRK  &kp LPAR          &kp RPAR           &trans
-&trans  &kp SINGLE_QUOTE  &kp DOUBLE_QUOTES  &kp BACKSLASH  &kp SLASH  &trans       &kp EQUAL  &kp QUESTION  &kp GRAVE  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &trans
-&trans  &kp PIPE          &trans             &trans         &trans     &trans       &kp UNDER  &kp PLUS      &kp TILDE  &kp LEFT_BRACE    &kp RIGHT_BRACE    &trans
-                                             &trans         &trans     &trans       &trans     &trans        &trans
+        //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮
+        //│          │  !       │  @       │ #       │  $        │ %        │   │ ^        │  &       │ *        │ (        │ )        │          │
+             &trans     &kp EXCL   &kp AT    &kp HASH   &kp DLLR   &kp PRCNT      &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR    &trans
+        //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│          │ '        │ "        │ \        │ /        │          │   │ =        │ ?        │ `        │ [        │ ]        │          │
+             &trans    &kp SQT    &kp DQT    &kp BSLH   &kp FSLH    &trans        &kp EQUAL  &kp QMARK  &kp GRAVE  &kp LBKT   &kp RBKT    &trans
+        //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│          │ │        │          │          │          │          │   │          │ +        │ ~        │ {        │ }        │          │
+             &trans    &kp PIPE    &trans     &trans     &trans     &trans         &trans    &kp PLUS   &kp TILDE  &kp LBRC   &kp RBRC    &trans
+        //╰──────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┴──────────┴──────────╯
+                                              &trans     &trans     &trans         &trans     &trans     &trans
+        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
             >;
         };
 
         tri_layer {
             bindings = <
-&trans  &kp F1  &kp F2   &kp F3   &kp F4   &bt BT_SEL 0    &bt BT_SEL 2  &trans         &trans  &kp C_MUTE    &kp C_NEXT  &trans
-&trans  &kp F5  &kp F6   &kp F7   &kp F8   &bt BT_SEL 1    &bt BT_SEL 3  &kp C_BRI_UP   &trans  &kp C_VOL_UP  &kp C_PP    &trans
-&trans  &kp F9  &kp F10  &kp F11  &kp F12  &bt BT_CLR      &bt BT_SEL 4  &kp C_BRI_DEC  &trans  &kp C_VOL_DN  &kp C_PREV  &trans
-                         &trans   &trans   &trans          &trans        &trans         &trans
+        //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮
+        //│          │  F1      │  F2      │  F3      │  F4      │ PROFILE 0│   │ PROFILE 2│          │          │ VOL MUTE │ NEXTSONG │          │
+             &trans     &kp F1     &kp F2     &kp F3     &kp F4   &bt BT_SEL 0  &bt BT_SEL 2  &trans     &trans   &kp C_MUTE &kp C_NEXT   &trans
+        //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│          │  F5      │  F6      │  F7      │  F8      │ PROFILE 1│   │ PROFILE 3│INC BRIGHT│          │ VOL UP   │PAUSEMUSIC│          │
+             &trans     &kp F5     &kp F6     &kp F7     &kp F8    &bt BT_SEL 1  &bt BT_SEL 3 &kp C_BRI_UP &trans  &kp C_VOL_UP &kp C_PP  &trans
+        //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│          │  F9      │  F10     │  F11     │  F12     │ CLEAR BT │   │ PROFILE 4│DEC BRIGHT│          │ VOL DOWN │ PREVSONG │          │
+             &trans     &kp F9     &kp F10    &kp F11    &kp F12   &bt BT_CLR   &bt BT_SEL 4 &kp C_BRI_DEC &trans &kp C_VOL_DN &kp C_PREV &trans
+        //╰──────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┴──────────┴──────────╯
+                                              &trans     &trans     &trans         &trans     &trans     &trans
+        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
             >;
         };
     };
