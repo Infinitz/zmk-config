@@ -6,7 +6,7 @@
     Notes:
     - OS layout = Finnish. (Ö=SEMICOLON, Ä=APOSTROPHE, Å=LEFT_BRACKET)
     - Canonical key names used to avoid alias issues:
-      SEMICOLON, APOSTROPHE, LEFT_BRACKET, ENTER, PGDN/PGUP, PRINT_SCREEN.
+      ESCAPE, ENTER, DELETE, PRINT_SCREEN, PGUP/PGDN, LEFT_BRACKET, SEMICOLON, APOSTROPHE.
     - Layers (indices): 0 BASE, 1 SYM, 2 NAV, 3 ADJ, 4 GAME
 */
 
@@ -17,34 +17,34 @@
         /* ────────────────────────────────────────────────────────────────────
          * BASE (0)
          * Left half                                Right half
-         * ╭────┬───┬───┬───┬───┬───╮       ╭───┬───┬───┬───┬───┬────╮
-         * │Esc │ Q │ W │ E │ R │ T │       │ Y │ U │ I │ O │ P │ Å  │
-         * ├────┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼────┤
-         * │Tab │ A │ S │ D │ F │ G │       │ H │ J │ K │ L │ Ö │ Ä  │
-         * │    │Ctl│Alt│Gui│Sft│   │       │   │Sft│Gui│Alt│Ctl│    │
-         * ├────┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼────┤
-         * │Sft │ Z │ X │ C │ V │ B │       │ N │ M │ , │ . │ - │ /  │
-         * ╰────┴───┴───┴───┴───┴───╯       ╰───┴───┴───┴───┴───┴────╯
-         *        ╭────┬────┬────╮               ╭────┬────┬────╮
-         *        │SYM │Spc │Bspc│               │Ent │NAV │Del │
-         *        ╰────┴────┴────╯               ╰────┴────┴────╯
+         * ╭────────┬───┬───┬───┬───┬───╮      ╭───┬───┬───┬───┬───┬────────╮
+         * │Escape  │ Q │ W │ E │ R │ T │      │ Y │ U │ I │ O │ P │   Å    │
+         * ├────────┼───┼───┼───┼───┼───┤      ├───┼───┼───┼───┼───┼────────┤
+         * │ Tab    │ A │ S │ D │ F │ G │      │ H │ J │ K │ L │ Ö │   Ä    │
+         * │        │Ctl│Alt│Gui│Sft│   │      │   │Sft│Gui│Alt│Ctl│        │
+         * ├────────┼───┼───┼───┼───┼───┤      ├───┼───┼───┼───┼───┼────────┤
+         * │ Shift  │ Z │ X │ C │ V │ B │      │ N │ M │ , │ . │ - │   /    │
+         * ╰────────┴───┴───┴───┴───┴───╯      ╰───┴───┴───┴───┴───┴────────╯
+         *         ╭────┬────┬────╮                 ╭────┬────┬────╮
+         *         │SYM │Spc │Bspc│                 │Ent │NAV │Del │
+         *         ╰────┴────┴────╯                 ╰────┴────┴────╯
          * ──────────────────────────────────────────────────────────────────── */
         base {
             label = "BASE";
             bindings = <
                 /* Row 1 */
-                &lt 3 ESC       &kp Q        &kp W        &kp E        &kp R        &kp T            &kp Y        &kp U        &kp I        &kp O        &kp P           &kp LEFT_BRACKET
+                &lt 3 ESCAPE   &kp Q        &kp W        &kp E        &kp R        &kp T            &kp Y        &kp U        &kp I        &kp O        &kp P           &kp LEFT_BRACKET
                 /* Row 2 (HRMs) */
-                &kp TAB        &mt LCTRL A  &mt LALT S   &mt LGUI D   &mt LSHFT F  &kp G            &kp H        &mt RSHFT J  &mt RGUI K   &mt RALT L   &mt RCTRL SEMICOLON &kp APOSTROPHE
+                &kp TAB       &mt LCTRL A  &mt LALT S   &mt LGUI D   &mt LSHFT F  &kp G            &kp H        &mt RSHFT J  &mt RGUI K   &mt RALT L   &mt RCTRL SEMICOLON &kp APOSTROPHE
                 /* Row 3 */
-                &kp LSHFT      &kp Z        &kp X        &kp C        &kp V        &kp B            &kp N        &kp M        &kp COMMA    &kp DOT      &kp MINUS       &kp SLASH
+                &kp LSHFT     &kp Z        &kp X        &kp C        &kp V        &kp B            &kp N        &kp M        &kp COMMA    &kp DOT      &kp MINUS       &kp SLASH
                 /* Thumbs */
-                &lt 1 SPACE     &kp SPACE    &kp BSPC                              &kp ENTER       &lt 2 ENTER     &kp DEL
+                &lt 1 SPACE    &kp SPACE    &kp BSPC                              &kp ENTER       &lt 2 ENTER     &kp DELETE
             >;
         };
 
         /* ────────────────────────────────────────────────────────────────────
-         * SYM (1)
+         * SYM (1) — Numbers & symbols (Finnish-friendly)
          * Left half                                Right half
          * ╭────┬───┬───┬───┬───┬───╮       ╭───┬───┬───┬───┬───┬────╮
          * │ `  │ 1 │ 2 │ 3 │ 4 │ 5 │       │ 6 │ 7 │ 8 │ 9 │ 0 │ =  │
@@ -74,13 +74,13 @@
         /* ────────────────────────────────────────────────────────────────────
          * NAV (2)
          * Left half                                Right half
-         * ╭────────┬───┬───┬───┬───┬───╮     ╭───┬───┬────────┬───┬────┬────╮
-         * │PrtScrn │   │   │   │   │   │     │   │   │ Insert │   │    │Mute│
-         * ├────────┼───┼───┼───┼───┼───┤     ├───┼───┼────────┼───┼────┼────┤
-         * │CapsWrd │Home│PgDn│PgUp│End │     │ ← │ ↓ │   ↑    │ → │ W← │ W→ │
-         * ├────────┼───┼───┼───┼───┼───┤     ├───┼───┼────────┼───┼────┼────┤
-         * │  GUI   │ C │ A │ S │   │   │     │Undo│Cut│ Copy  │Paste│ Tab│ Esc│
-         * ╰────────┴───┴───┴───┴───┴───╯     ╰───┴───┴────────┴───┴────┴────╯
+         * ╭──────────┬───┬───┬───┬───┬───╮   ╭───┬───┬────────┬───┬────┬────╮
+         * │PrintScrn │   │   │   │   │   │   │   │   │ Insert │   │    │Mute│
+         * ├──────────┼───┼───┼───┼───┼───┤   ├───┼───┼────────┼───┼────┼────┤
+         * │ CapsWord │Home│PgDn│PgUp│End │   │ ← │ ↓ │   ↑    │ → │ W← │ W→ │
+         * ├──────────┼───┼───┼───┼───┼───┤   ├───┼───┼────────┼───┼────┼────┤
+         * │   GUI    │ C │ A │ S │   │   │   │Undo│Cut│  Copy │Paste│ Tab│ Esc│
+         * ╰──────────┴───┴───┴───┴───┴───╯   ╰───┴───┴────────┴───┴────┴────╯
          *        ╭────┬────┬────╮               ╭────┬────┬────╮
          *        │SYM │Spc │Bspc│               │Ent │NAV │Del │
          *        ╰────┴────┴────╯               ╰────┴────┴────╯
@@ -93,22 +93,14 @@
                 /* Row 2 */
                 &caps_word       &kp HOME   &kp PGDN     &kp PGUP     &kp END      &trans           &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &kp LC(LEFT)  &kp LC(RIGHT)
                 /* Row 3 */
-                &kp LGUI         &kp LCTRL  &kp LALT     &kp LSHFT    &trans       &trans           &kp LC(Z)     &kp LC(X)     &kp LC(C)     &kp LC(V)     &kp TAB       &kp ESC
+                &kp LGUI         &kp LCTRL  &kp LALT     &kp LSHFT    &trans       &trans           &kp LC(Z)     &kp LC(X)     &kp LC(C)     &kp LC(V)     &kp TAB       &kp ESCAPE
                 /* Thumbs */
-                &lt 1 SPACE       &kp SPACE  &kp BSPC                              &kp ENTER       &lt 2 ENTER     &kp DEL
+                &lt 1 SPACE       &kp SPACE  &kp BSPC                              &kp ENTER       &lt 2 ENTER     &kp DELETE
             >;
         };
 
         /* ────────────────────────────────────────────────────────────────────
-         * ADJ (3)
-         * Left half                                Right half
-         * ╭────┬────┬────┬────┬────┬────╮      ╭────┬────┬────┬────┬────┬────╮
-         * │Rst │ F1 │ F2 │ F3 │ F4 │ F5 │      │ F6 │ F7 │ F8 │ F9 │ F10│ F11│
-         * ├────┼────┼────┼────┼────┼────┤      ├────┼────┼────┼────┼────┼────┤
-         * │    │ F12│ Spd- Spd+│ Vol- Vol+│    │Play│Prev│Next│Mute│Game│    │
-         * ├────┼────┼────┼────┼────┼────┤      ├────┼────┼────┼────┼────┼────┤
-         * │    │Hue-│Hue+│Sat-│Sat+│    │      │    │    │    │    │    │    │
-         * ╰────┴────┴────┴────┴────┴────╯      ╰────┴────┴────┴────┴────┴────╯
+         * ADJ (3) — F-keys, media, RGB, Game toggle
          * ──────────────────────────────────────────────────────────────────── */
         adj {
             label = "ADJ";
@@ -131,13 +123,13 @@
             label = "GAME";
             bindings = <
                 /* Row 1 */
-                &kp ESC          &kp Q        &kp W        &kp E        &kp R        &kp T            &kp Y        &kp U        &kp I        &kp O        &kp P          &kp LEFT_BRACKET
+                &kp ESCAPE       &kp Q        &kp W        &kp E        &kp R        &kp T            &kp Y        &kp U        &kp I        &kp O        &kp P           &kp LEFT_BRACKET
                 /* Row 2 */
-                &kp TAB          &kp A        &kp S        &kp D        &kp F        &kp G            &kp H        &kp J        &kp K        &kp L        &kp SEMICOLON  &kp APOSTROPHE
+                &kp TAB          &kp A        &kp S        &kp D        &kp F        &kp G            &kp H        &kp J        &kp K        &kp L        &kp SEMICOLON   &kp APOSTROPHE
                 /* Row 3 */
                 &kp LSHFT        &kp Z        &kp X        &kp C        &kp V        &kp B            &kp N        &kp M        &kp COMMA    &kp DOT      &kp MINUS       &kp SLASH
                 /* Thumbs */
-                &kp SPACE        &kp SPACE    &kp BSPC                              &kp ENTER       &kp ENTER     &kp DEL
+                &kp SPACE        &kp SPACE    &kp BSPC                              &kp ENTER       &kp ENTER     &kp DELETE
             >;
         };
     };
