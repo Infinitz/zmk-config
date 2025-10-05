@@ -35,9 +35,9 @@
                 /* Row 1 */
                 &lt 3 ESC      &kp Q        &kp W        &kp E        &kp R        &kp T            &kp Y        &kp U        &kp I        &kp O        &kp P           &kp LEFT_BRACKET
                 /* Row 2 (HRMs) */
-                &kp TAB        &mt LCTRL A  &mt LALT S   &mt LGUI D   &mt LSHIFT F &kp G            &kp H        &mt RSHIFT J &mt RGUI K   &mt RALT L   &mt RCTRL SEMICOLON &kp APOSTROPHE
+                &kp TAB        &mt LCTRL A  &mt LALT S   &mt LGUI D   &mt LSHFT F  &kp G            &kp H        &mt RSHFT J  &mt RGUI K   &mt RALT L   &mt RCTRL SEMICOLON &kp APOSTROPHE
                 /* Row 3 */
-                &kp LSHIFT     &kp Z        &kp X        &kp C        &kp V        &kp B            &kp N        &kp M        &kp COMMA    &kp DOT      &kp MINUS       &kp SLASH
+                &kp LEFT_SHIFT &kp Z        &kp X        &kp C        &kp V        &kp B            &kp N        &kp M        &kp COMMA    &kp DOT      &kp MINUS       &kp SLASH
                 /* Thumbs */
                 &lt 1 SPACE    &kp SPACE    &kp BSPC                              &kp ENTER       &lt 2 ENTER     &kp DELETE
             >;
@@ -55,83 +55,4 @@
          * ├────┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼────┤
          * │    │ ! │ @ │ # │ $ │ ^ │       │ ^ │ & │ * │ < │ > │ /? │
          * ╰────┴───┴───┴───┴───┴───╯       ╰───┴───┴───┴───┴───┴────╯
-         *        ╭────┬────┬────────╮           ╭────┬────┬────────╮
-         *        │    │    │DelWord │           │Ret │    │DelLine │
-         *        ╰────┴────┴────────╯           ╰────┴────┴────────╯
-         *
-         * Notes:
-         * - [ ] { } \ | € use AltGr (RA) combos per Finnish layout.
-         * - DelWord = Ctrl+Backspace, DelLine = Ctrl+Delete.
-         * ──────────────────────────────────────────────────────────────────── */
-        sym {
-            label = "SYM";
-            bindings = <
-                /* Row 1: ` 1 2 3 4 5 | 6 7 8 9 0 = */
-                &kp GRAVE      &kp N1       &kp N2        &kp N3        &kp N4        &kp N5          &kp N6        &kp N7        &kp N8        &kp N9        &kp N0        &kp EQUAL
-                /* Row 2: ( ) [ ] { } | _ " ' € \| */
-                &trans         &kp LS(N8)   &kp LS(N9)    &kp RA(N8)    &kp RA(N9)    &kp RA(N7)      &kp RA(N0)    &kp LS(MINUS) &kp LS(N2)    &kp APOSTROPHE &kp RA(E)     &kp RA(EQUAL)
-                /* Row 3: ! @ # $ % ^ | ^ & * < > /? */
-                &trans         &kp LS(N1)   &kp RA(N2)    &kp RA(N3)    &kp RA(N4)    &kp LS(N6)      &kp LS(N6)    &kp LS(N7)    &kp LS(N8)    &kp COMMA     &kp DOT       &kp SLASH
-                /* Thumbs: DelWord / DelLine helpers */
-                &trans         &trans       &kp LC(BSPC)                         &kp ENTER       &trans         &kp LC(DEL)
-            >;
-        };
-
-        /* ────────────────────────────────────────────────────────────────────
-         * NAV (2) — Navigation & editing (Vim-ish arrows on H J K L)
-         *
-         * Visualization
-         * Left half                                Right half
-         * ╭────┬───┬───┬───┬───┬───╮       ╭───┬───┬──────┬───┬────┬────╮
-         * │    │   │   │   │   │   │       │   │   │ Ins  │   │    │Mute│
-         * ├────┼───┼───┼───┼───┼───┤       ├───┼───┼──────┼───┼────┼────┤
-         * │Caps│Home│PgDn│PgUp│End │       │ ← │ ↓ │  ↑   │ → │ W← │ W→ │
-         * ├────┼───┼───┼───┼───┼───┤       ├───┼───┼──────┼───┼────┼────┤
-         * │ Gui│ C │ A │ S │   │   │       │Undo│Cut│Copy │Paste│ Tab│ Esc│
-         * ╰────┴───┴───┴───┴───┴───╯       ╰────┴───┴──────┴───┴────┴────╯
-         *        ╭────┬────┬────╮               ╭────┬────┬────╮
-         *        │SYM │Spc │Bspc│               │Ent │NAV │Del │
-         *        ╰────┴────┴────╯               ╰────┴────┴────╯
-         * ──────────────────────────────────────────────────────────────────── */
-        nav {
-            label = "NAV";
-            bindings = <
-                /* Row 1 (kept simple to avoid alias issues) */
-                &trans          &trans       &trans       &trans       &trans       &trans           &trans        &trans        &kp INS       &trans        &trans        &kp C_MUTE
-                /* Row 2 */
-                &caps_word      &kp HOME     &kp PG_DN    &kp PG_UP    &kp END      &trans           &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &kp LC(LEFT)  &kp LC(RIGHT)
-                /* Row 3 */
-                &kp LGUI        &kp LCTRL    &kp LALT     &kp LSHIFT   &trans       &trans           &kp LC(Z)     &kp LC(X)     &kp LC(C)     &kp LC(V)     &kp TAB       &kp ESC
-                /* Thumbs */
-                &lt 1 SPACE      &kp SPACE    &kp BSPC                              &kp ENTER       &lt 2 ENTER     &kp DELETE
-            >;
-        };
-
-        /* ────────────────────────────────────────────────────────────────────
-         * ADJ (3) — Function keys, media, RGB
-         *
-         * Visualization
-         * Left half                                Right half
-         * ╭────┬────┬────┬────┬────┬────╮      ╭────┬────┬────┬────┬────┬────╮
-         * │Rst │ F1 │ F2 │ F3 │ F4 │ F5 │      │ F6 │ F7 │ F8 │ F9 │ F10│ F11│
-         * ├────┼────┼────┼────┼────┼────┤      ├────┼────┼────┼────┼────┼────┤
-         * │    │ F12│ Spd- Spd+│ Vol- Vol+│    │Play│Prev│Next│Mute│    │    │
-         * ├────┼────┼────┼────┼────┼────┤      ├────┼────┼────┼────┼────┼────┤
-         * │    │Hue-│Hue+│Sat-│Sat+│    │      │    │    │    │    │    │    │
-         * ╰────┴────┴────┴────┴────┴────╯      ╰────┴────┴────┴────┴────┴────╯
-         * ──────────────────────────────────────────────────────────────────── */
-        adj {
-            label = "ADJ";
-            bindings = <
-                /* Row 1 */
-                &bootloader     &kp F1       &kp F2       &kp F3       &kp F4       &kp F5           &kp F6        &kp F7        &kp F8        &kp F9        &kp F10       &kp F11
-                /* Row 2 */
-                &trans          &kp F12      &rgb_ug RGB_SPD &rgb_ug RGB_SPI &kp C_VOL_DOWN &kp C_VOL_UP  &kp C_PLAY_PAUSE &kp C_PREV   &kp C_NEXT    &kp C_MUTE    &trans        &trans
-                /* Row 3 */
-                &trans          &rgb_ug RGB_HUD &rgb_ug RGB_HUI &rgb_ug RGB_SAD &rgb_ug RGB_SAI &trans       &trans        &trans        &trans        &trans        &trans        &trans
-                /* Thumbs */
-                &trans          &trans       &trans                               &trans          &trans        &trans
-            >;
-        };
-    };
-};
+         *        ╭────┬────┬────────╮           ╭────┬────┬─────*
