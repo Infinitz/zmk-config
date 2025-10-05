@@ -1,96 +1,177 @@
-/*
- * Copyright (c) 2020 The ZMK Contributors
- *
- * SPDX-License-Identifier: MIT
- */
+/*  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+    ┃             Corne Choc – ZMK keymap (Finnish-first, BT split)           ┃
+    ┃           Mods on A S D F  ·  J K L Ö  (mirrored homerow mods)           ┃
+    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-#include <behaviors.dtsi>
-#include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/keys.h>
+    Notes:
+    - OS layout = Finnish. (Ö=SEMICOLON, Ä=APOSTROPHE, Å=LEFT BRACKET)
+    - If a key name differs in your ZMK version, try: SEMI→SEMICOLON, SQT→APOSTROPHE,
+      PG_DN→PGDN, PG_UP→PGUP, RET→ENTER, LBKT→LEFT_BRACKET.
 
-#define DEF 0
-#define LWR 1
-#define RSE 2
-#define TRI 3
+    LEGEND:
+    - Tap on homerow = letter; Hold = modifier (HRM).
+    - SYM = numbers/symbols layer (hold left inner thumb).
+    - NAV = navigation/edit layer (hold right inner thumb).
+    - ADJ = function/media/RGB (hold Esc).
+    - GAME = no-GUI/no-HRM variant for gaming.
+*/
 
 / {
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-
-        tri_layer {
-            if-layers = <LWR RSE>;
-            then-layer = <TRI>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        /* ────────────────────────────────────────────────────────────────────
+         * BASE (0) — QWERTY-ish, Å parked, mirrored HRMs, Ä plain
+         *
+         * Visualization (tap • hold=mod)
+         * Left half                                Right half
+         * ╭────┬───┬───┬───┬───┬───╮       ╭───┬───┬───┬───┬───┬────╮
+         * │Esc │ Q │ W │ E │ R │ T │       │ Y │ U │ I │ O │ P │ Å  │
+         * ├────┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼────┤
+         * │Tab │ A │ S │ D │ F │ G │       │ H │ J │ K │ L │ Ö │ Ä  │
+         * │    │Ctl│Alt│Gui│Sft│   │       │   │Sft│Gui│Alt│Ctl│    │
+         * ├────┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼────┤
+         * │Sft │ Z │ X │ C │ V │ B │       │ N │ M │ , │ . │ - │ /  │
+         * ╰────┴───┴───┴───┴───┴───╯       ╰───┴───┴───┴───┴───┴────╯
+         *        ╭────┬────┬────╮               ╭────┬────┬────╮
+         *        │SYM │Spc │Bspc│               │Ent │NAV │Del │
+         *        ╰────┴────┴────╯               ╰────┴────┴────╯
+         * ──────────────────────────────────────────────────────────────────── */
+        base {
+            label = "BASE";
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│  TAB     │  Q       │  W       │  E       │  R       │  T       │   │  Y       │  U       │  I       │  O       │  P       │  ESC     │
-             &kp TAB    &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P      &kp ESCAPE
-        //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ CTRL     │  A       │  S       │  D       │  F       │  G       │   │  H       │  J       │  K       │  L       │ Ö        │ Ä        │
-            &kp LCTRL   &kp A      &kp S      &kp D      &kp F      &kp G          &kp H      &kp J      &kp K      &kp L     &kp SEMI   &kp SQT
-        //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ SHIFT    │  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , ;      │ . :      │ - _      │ ALT      │
-            &kp LSHFT   &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M     &kp COMMA  &kp DOT    &kp FSLH   &kp LEFT_ALT
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &kp LGUI    &mo 1     &kp SPACE       &kp RET    &mo 2     &kp BSPC
-        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
+                /* Row 1 */
+                &lt ADJ ESC    &kp Q        &kp W        &kp E        &kp R        &kp T            &kp Y        &kp U        &kp I        &kp O        &kp P         &kp LBKT
+                /* Row 2 (HRMs) */
+                &kp TAB        &mt LCTRL A  &mt LALT S   &mt LGUI D   &mt LSHFT F  &kp G            &kp H        &mt RSHFT J  &mt RGUI K   &mt RALT L   &mt RCTRL SEMI &kp SQT
+                /* Row 3 */
+                &kp LSHFT      &kp Z        &kp X        &kp C        &kp V        &kp B            &kp N        &kp M        &kp COMMA    &kp DOT      &kp MINUS     &kp SLASH
+                /* Thumbs */
+                &lt SYM SPACE   &kp SPACE    &kp BSPC                              &kp RET         &lt NAV RET     &kp DEL
             >;
         };
 
-        lower_layer {
+        /* ────────────────────────────────────────────────────────────────────
+         * SYM (1) — Numbers & symbols (Finnish-friendly)
+         *
+         * Visualization (intended characters shown; produced via Shift/AltGr)
+         * Left half                                Right half
+         * ╭────┬───┬───┬───┬───┬───╮       ╭───┬───┬───┬───┬───┬────╮
+         * │ `  │ 1 │ 2 │ 3 │ 4 │ 5 │       │ 6 │ 7 │ 8 │ 9 │ 0 │ =  │
+         * ├────┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼────┤
+         * │    │ ( │ ) │ [ │ ] │ { │       │ } │ _ │ " │ ' │ € │ \| │
+         * ├────┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼────┤
+         * │    │ ! │ @ │ # │ $ │ ^ │       │ ^ │ & │ * │ < │ > │ /? │
+         * ╰────┴───┴───┴───┴───┴───╯       ╰───┴───┴───┴───┴───┴────╯
+         *        ╭────┬────┬────────╮           ╭────┬────┬────────╮
+         *        │    │    │DelWord │           │Ret │    │DelLine │
+         *        ╰────┴────┴────────╯           ╰────┴────┴────────╯
+         *
+         * Notes:
+         * - [ ] { } \ | € are sent using AltGr (RA) + digits/keys per Finnish layout.
+         * - DelWord = Ctrl+Backspace, DelLine = Ctrl+Delete (editor-friendly).
+         * ──────────────────────────────────────────────────────────────────── */
+        sym {
+            label = "SYM";
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│          │  1       │  2       │  3       │  4       │  5       │   │  6       │  7       │  8       │  9       │  0       │          │
-             &trans     &kp N1     &kp N2     &kp N3     &kp N4     &kp N5         &kp N6     &kp N7     &kp N8     &kp N9     &kp N0     &trans
-        //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │  DELETE  │ CapsLock │ PrintSc  │  INSERT  │          │   │          │ LEFT     │ DOWN     │  UP      │ RIGHT    │          │
-             &trans     &kp DEL   &kp CAPS   &kp PSCRN   &kp INS    &trans         &trans    &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT   &trans
-        //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │          │          │          │   │          │          │ PAGE DN  │ PAGE UP  │  END     │          │
-             &trans     &trans     &trans     &trans     &trans     &trans         &trans     &kp HOME  &kp PG_DN  &kp PG_UP   &kp END    &trans
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┴──────────┴──────────╯
-                                              &trans     &trans     &trans         &trans     &trans     &trans
-        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
+                /* Row 1: ` 1 2 3 4 5 | 6 7 8 9 0 = */
+                &kp GRAVE      &kp N1       &kp N2        &kp N3        &kp N4        &kp N5          &kp N6        &kp N7        &kp N8        &kp N9        &kp N0        &kp EQUAL
+                /* Row 2: ( ) [ ] { } | _ " ' € \| */
+                &trans         &kp LS(N8)   &kp LS(N9)    &kp RA(N8)    &kp RA(N9)    &kp RA(N7)      &kp RA(N0)    &kp LS(MINUS) &kp LS(N2)    &kp SQT       &kp RA(E)     &kp RA(EQUAL)
+                /* Row 3: ! @ # $ % ^ | ^ & * < > /?  (some keys repeated for convenience) */
+                &trans         &kp LS(N1)   &kp RA(N2)    &kp RA(N3)    &kp RA(N4)    &kp LS(N6)      &kp LS(N6)    &kp LS(N7)    &kp LS(N8)    &kp COMMA     &kp DOT       &kp SLASH
+                /* Thumbs: DelWord / DelLine helpers */
+                &trans         &trans       &kp LC(BSPC)                         &kp RET         &trans         &kp LC(DEL)
             >;
         };
 
-        raise_layer {
+        /* ────────────────────────────────────────────────────────────────────
+         * NAV (2) — Navigation & editing (Vim-ish arrows on H J K L)
+         *
+         * Visualization
+         * Left half                                Right half
+         * ╭────┬───┬───┬───┬───┬───╮       ╭───┬───┬───┬───┬────┬────╮
+         * │PrSc│   │   │   │   │   │       │   │   │Ins│   │    │Mute│
+         * ├────┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼────┼────┤
+         * │Caps│Home│PgDn│PgUp│End │       │ ← │ ↓ │ ↑ │ → │ W← │ W→ │
+         * ├────┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼────┼────┤
+         * │ Gui│ C │ A │ S │   │   │       │Undo│Cut│Copy│Paste│ Tab│ Esc│
+         * ╰────┴───┴───┴───┴───┴───╯       ╰────┴───┴───┴───┴────┴────╯
+         *        ╭────┬────┬────╮               ╭────┬────┬────╮
+         *        │SYM │Spc │Bspc│               │Ent │NAV │Del │
+         *        ╰────┴────┴────╯               ╰────┴────┴────╯
+         * ──────────────────────────────────────────────────────────────────── */
+        nav {
+            label = "NAV";
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│          │  !       │  @       │ #       │  $        │ %        │   │ ^        │  &       │ *        │ (        │ )        │          │
-             &trans     &kp EXCL   &kp AT    &kp HASH   &kp DLLR   &kp PRCNT      &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR    &trans
-        //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │ '        │ "        │ \        │ /        │          │   │ =        │ ?        │ `        │ [        │ ]        │          │
-             &trans    &kp SQT    &kp DQT    &kp BSLH   &kp FSLH    &trans        &kp EQUAL  &kp QMARK  &kp GRAVE  &kp LBKT   &kp RBKT    &trans
-        //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │ │        │          │          │          │          │   │          │ +        │ ~        │ {        │ }        │          │
-             &trans    &kp PIPE    &trans     &trans     &trans     &trans         &trans    &kp PLUS   &kp TILDE  &kp LBRC   &kp RBRC    &trans
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┴──────────┴──────────╯
-                                              &trans     &trans     &trans         &trans     &trans     &trans
-        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
+                /* Row 1 */
+                &kp PSCRN      &trans       &trans       &trans       &trans       &trans           &trans        &trans        &kp INS       &trans        &trans        &kp C_MUTE
+                /* Row 2 */
+                &caps_word     &kp HOME     &kp PG_DN    &kp PG_UP    &kp END      &trans           &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &kp LC(LEFT)  &kp LC(RIGHT)
+                /* Row 3 */
+                &kp LGUI       &kp LCTRL    &kp LALT     &kp LSHFT    &trans       &trans           &kp LC(Z)     &kp LC(X)     &kp LC(C)     &kp LC(V)     &kp TAB       &kp ESC
+                /* Thumbs */
+                &lt SYM SPACE   &kp SPACE    &kp BSPC                              &kp RET         &lt NAV RET     &kp DEL
             >;
         };
 
-        tri_layer {
+        /* ────────────────────────────────────────────────────────────────────
+         * ADJ (3) — Function keys, media, RGB, Game toggle
+         *
+         * Visualization
+         * Left half                                Right half
+         * ╭────┬────┬────┬────┬────┬────╮      ╭────┬────┬────┬────┬────┬────╮
+         * │Rst │ F1 │ F2 │ F3 │ F4 │ F5 │      │ F6 │ F7 │ F8 │ F9 │ F10│ F11│
+         * ├────┼────┼────┼────┼────┼────┤      ├────┼────┼────┼────┼────┼────┤
+         * │    │ F12│ Spd- Spd+│ Vol- Vol+│    │Play│Prev│Next│Mute│Game│    │
+         * ├────┼────┼────┼────┼────┼────┤      ├────┼────┼────┼────┼────┼────┤
+         * │    │Hue-│Hue+│Sat-│Sat+│    │      │    │    │    │    │    │    │
+         * ╰────┴────┴────┴────┴────┴────╯      ╰────┴────┴────┴────┴────┴────╯
+         *        ╭────┬────┬────╮               ╭────┬────┬────╮
+         *        │    │    │    │               │    │    │    │
+         *        ╰────┴────┴────╯               ╰────┴────┴────╯
+         * ──────────────────────────────────────────────────────────────────── */
+        adj {
+            label = "ADJ";
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│          │  F1      │  F2      │  F3      │  F4      │ PROFILE 0│   │ PROFILE 2│          │          │ VOL MUTE │ NEXTSONG │          │
-             &trans     &kp F1     &kp F2     &kp F3     &kp F4   &bt BT_SEL 0  &bt BT_SEL 2  &trans     &trans   &kp C_MUTE &kp C_NEXT   &trans
-        //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │  F5      │  F6      │  F7      │  F8      │ PROFILE 1│   │ PROFILE 3│INC BRIGHT│          │ VOL UP   │PAUSEMUSIC│          │
-             &trans     &kp F5     &kp F6     &kp F7     &kp F8    &bt BT_SEL 1  &bt BT_SEL 3 &kp C_BRI_UP &trans  &kp C_VOL_UP &kp C_PP  &trans
-        //├──────────│──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │  F9      │  F10     │  F11     │  F12     │ CLEAR BT │   │ PROFILE 4│DEC BRIGHT│          │ VOL DOWN │ PREVSONG │          │
-             &trans     &kp F9     &kp F10    &kp F11    &kp F12   &bt BT_CLR   &bt BT_SEL 4 &kp C_BRI_DEC &trans &kp C_VOL_DN &kp C_PREV &trans
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┴──────────┴──────────╯
-                                              &trans     &trans     &trans         &trans     &trans     &trans
-        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
+                /* Row 1 */
+                &bootloader    &kp F1       &kp F2       &kp F3       &kp F4       &kp F5           &kp F6        &kp F7        &kp F8        &kp F9        &kp F10       &kp F11
+                /* Row 2 */
+                &trans         &kp F12      &rgb_ug RGB_SPD &rgb_ug RGB_SPI &kp C_VOL_DOWN &kp C_VOL_UP  &kp C_PLAY_PAUSE &kp C_PREV   &kp C_NEXT    &kp C_MUTE    &tog GAME     &trans
+                /* Row 3 */
+                &trans         &rgb_ug RGB_HUD &rgb_ug RGB_HUI &rgb_ug RGB_SAD &rgb_ug RGB_SAI &trans       &trans        &trans        &trans        &trans        &trans        &trans
+                /* Thumbs */
+                &trans         &trans       &trans                               &trans          &trans        &trans
+            >;
+        };
+
+        /* ────────────────────────────────────────────────────────────────────
+         * GAME (4) — No GUI, no homerow mods (letters only)
+         *
+         * Visualization
+         * Left half                                Right half
+         * ╭────┬───┬───┬───┬───┬───╮       ╭───┬───┬───┬───┬───┬────╮
+         * │Esc │ Q │ W │ E │ R │ T │       │ Y │ U │ I │ O │ P │ Å  │
+         * ├────┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼────┤
+         * │Tab │ A │ S │ D │ F │ G │       │ H │ J │ K │ L │ Ö │ Ä  │
+         * ├────┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼────┤
+         * │Sft │ Z │ X │ C │ V │ B │       │ N │ M │ , │ . │ - │ /  │
+         * ╰────┴───┴───┴───┴───┴───╯       ╰───┴───┴───┴───┴───┴────╯
+         *        ╭────┬────┬────╮               ╭────┬────┬────╮
+         *        │Spc │Spc │Bspc│               │Ent │Ent │Del │
+         *        ╰────┴────┴────╯               ╰────┴────┴────╯
+         * ──────────────────────────────────────────────────────────────────── */
+        game {
+            label = "GAME";
+            bindings = <
+                /* Row 1 */
+                &kp ESC        &kp Q        &kp W        &kp E        &kp R        &kp T            &kp Y        &kp U        &kp I        &kp O        &kp P        &kp LBKT
+                /* Row 2 */
+                &kp TAB        &kp A        &kp S        &kp D        &kp F        &kp G            &kp H        &kp J        &kp K        &kp L        &kp SEMI     &kp SQT
+                /* Row 3 */
+                &kp LSHFT      &kp Z        &kp X        &kp C        &kp V        &kp B            &kp N        &kp M        &kp COMMA    &kp DOT      &kp MINUS    &kp SLASH
+                /* Thumbs */
+                &kp SPACE      &kp SPACE    &kp BSPC                              &kp RET         &kp RET       &kp DEL
             >;
         };
     };
