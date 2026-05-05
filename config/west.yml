@@ -10,11 +10,11 @@ manifest:
     # Default ZMK firmware
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      revision: v0.3
       import: app/west.yml
     # Nice view gem
     - name: nice-view-gem
       remote: m165437
-      revision: main
+      revision: v0.3.0
   self:
     path: config
