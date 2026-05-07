@@ -50,11 +50,11 @@
             &kp TAB    &kp A      HRML(S,      D,        F)        &kp G          &kp H      HRMR(J,      K,        L)        &kp FI_O_UMLAUT &kp FI_A_UMLAUT
 
         //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  CAPS    │  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │  ,       │  .       │  /       │  ENTER   │
-            &kp CAPS   &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp FI_COMMA &kp FI_DOT &kp FI_FSLH &kp ENTER
+        //│  SHIFT   │  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │  ,       │  .       │  /       │  ENTER   │
+            &kp LSHIFT &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp FI_COMMA &kp FI_DOT &kp FI_FSLH &kp ENTER
 
         //╰──────────┴──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────┴──────────╯
-                                                       &kp ESC    &lt LEF TAB &kp LSHIFT     &kp SPACE  &lt RIG TAB &kp BSPC
+                                                       &kp ESC    &lt LEF TAB &kp SPACE      &kp LSHIFT &lt RIG TAB &kp BSPC
         //                                             ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
             >;
         };
@@ -66,8 +66,8 @@
             &trans    &kp N1     &kp N2     &kp N3     &kp N4     &kp N5         &kp N6     &kp N7     &kp N8     &kp N9     &kp N0     &kp DEL
 
         //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │ CAPSLOCK │ PRINTSCR │ INSERT   │          │          │   │          │  LEFT    │  DOWN    │  UP      │  RIGHT   │          │
-            &trans    &kp CAPS   &kp PSCRN  &kp INS    &trans     &trans         &trans     &kp LARW   &kp DARW   &kp UARW   &kp RARW   &trans
+        //│          │ CAPSLOCK │ PRINTSCR │ INSERT   │          │          │   │  LEFT    │  DOWN    │  UP      │  RIGHT   │          │          │
+            &trans    &kp CAPS   &kp PSCRN  &kp INS    &trans     &trans         &kp LARW   &kp DARW   &kp UARW   &kp RARW   &trans     &trans
 
         //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
         //│          │          │          │          │          │          │   │          │  HOME    │ PAGE DN  │ PAGE UP  │  END     │          │
