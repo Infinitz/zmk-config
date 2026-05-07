@@ -16,5 +16,9 @@ manifest:
     - name: nice-view-gem
       remote: m165437
       revision: v0.3.0
+    # Locales
+    - name: zmk-locales
+      remote: joelspadin
+      revision: main
   self:
     path: config
