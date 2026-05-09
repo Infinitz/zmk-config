@@ -6,7 +6,11 @@
 
 // Home row mods
 #define HRML(k2,k3,k4) &ht LALT k2  &ht LCTRL k3  &ht LGUI k4
-#define HRMR(k1,k2,k3) &ht RGUI k1  &ht RCTRL k2  &ht RALT k3
+
+// Right hand uses left-side modifier keycodes intentionally.
+// On Nordic/Finnish layouts, RALT behaves as AltGr, so using LALT here
+// gives normal Alt behavior on the physical right-hand home-row key.
+#define HRMR(k1,k2,k3) &ht LGUI k1  &ht LCTRL k2  &ht LALT k3
 
 #define DEF 0
 #define RIG 1
@@ -50,12 +54,12 @@
             &kp TAB    &kp A      HRML(S,      D,        F)        &kp G          &kp H      HRMR(J,      K,        L)        &kp FI_O_UMLAUT &kp FI_A_UMLAUT
 
         //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  SHIFT   │  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │  ,       │  .       │  /       │  ENTER   │
-            &kp LSHIFT &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp FI_COMMA &kp FI_DOT &kp FI_FSLH &kp ENTER
+        //│  SHIFT   │  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │  ,       │  .       │  /       │          │
+            &kp LSHIFT &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp FI_COMMA &kp FI_DOT &kp FI_FSLH &none
 
         //╰──────────┴──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────┴──────────╯
-                                                       &kp ESC    &lt LEF TAB &kp SPACE      &kp LSHIFT &lt RIG TAB &kp BSPC
-        //                                             ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
+                                           &kp ESC    &lt LEF TAB &kp SPACE     &kp ENTER  &lt RIG TAB &kp LSHIFT
+        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
             >;
         };
 
@@ -70,32 +74,32 @@
             &trans    &kp CAPS   &kp PSCRN  &kp INS    &trans     &trans         &kp LARW   &kp DARW   &kp UARW   &kp RARW   &trans     &trans
 
         //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │          │          │          │   │          │  HOME    │ PAGE DN  │ PAGE UP  │  END     │          │
-            &trans    &trans     &trans     &trans     &trans     &trans         &trans     &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &trans
+        //│          │          │          │          │          │          │   │  HOME    │ PAGE DN  │ PAGE UP  │  END     │          │          │
+            &trans    &trans     &trans     &trans     &trans     &trans         &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &trans     &trans
 
         //╰──────────┴──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────┴──────────╯
-                                           &trans     &trans     &kp ESC        &trans     &trans     &trans
+                                           &trans     &trans     &trans        &trans     &trans     &trans
         //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
             >;
         };
 
         left_layer {
             bindings = <
-            //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮
-            //│          │  !       │  @       │  #       │  $       │  %       │   │  ^       │  &       │  *       │  `       │  ?       │          │
-                &trans    &kp FI_EXCL &kp FI_AT   &kp FI_HASH &kp FI_DLLR &kp FI_PRCNT    &kp FI_CARET &kp FI_AMPS &kp FI_ASTRK &kp FI_GRAVE &kp FI_QMARK &trans
-        
-            //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│          │  "       │  [       │  {       │  (       │          │   │  /       │  -       │  =       │  :       │  ;       │          │
-                &trans    &kp FI_DQT  &kp FI_LBKT &kp FI_LBRC &kp FI_LPAR &trans        &kp FI_FSLH &kp FI_MINUS &kp FI_EQUAL &kp FI_COLON &kp FI_SEMI &trans
-        
-            //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│          │  '       │  ]       │  }       │  )       │          │   │  \       │  _       │  +       │  |       │  ~       │          │
-                &trans    &kp FI_SQT  &kp FI_RBKT &kp FI_RBRC &kp FI_RPAR &trans        &kp FI_BSLH &kp FI_UNDER &kp FI_PLUS &kp FI_PIPE &kp FI_TILDE &trans
-        
-            //╰──────────┴──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────┴──────────╯
-                                               &trans     &trans     &trans         &trans     &trans     &trans
-            //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
+        //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮
+        //│          │  !       │  @       │  #       │  $       │  %       │   │  ^       │  &       │  *       │  `       │  ?       │          │
+            &trans    &kp FI_EXCL &kp FI_AT   &kp FI_HASH &kp FI_DLLR &kp FI_PRCNT    &kp FI_CARET &kp FI_AMPS &kp FI_ASTRK &kp FI_GRAVE &kp FI_QMARK &trans
+
+        //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│          │  "       │  [       │  {       │  (       │          │   │  /       │  -       │  =       │  :       │  ;       │          │
+            &trans    &kp FI_DQT  &kp FI_LBKT &kp FI_LBRC &kp FI_LPAR &trans        &kp FI_FSLH &kp FI_MINUS &kp FI_EQUAL &kp FI_COLON &kp FI_SEMI &trans
+
+        //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│          │  '       │  ]       │  }       │  )       │          │   │  \       │  _       │  +       │  |       │  ~       │          │
+            &trans    &kp FI_SQT  &kp FI_RBKT &kp FI_RBRC &kp FI_RPAR &trans        &kp FI_BSLH &kp FI_UNDER &kp FI_PLUS &kp FI_PIPE &kp FI_TILDE &trans
+
+        //╰──────────┴──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────┴──────────╯
+                                           &trans     &trans     &trans        &trans     &trans     &trans
+        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
             >;
         };
 
@@ -114,8 +118,8 @@
             &trans    &kp F9     &kp F10    &kp F11    &kp F12      &bt BT_CLR     &bt BT_SEL 4  &kp C_BRI_DEC &trans  &kp C_VOL_DN &kp C_PREV &trans
 
         //╰──────────┴──────────┴──────────┴──────────┼────────────┼────────┤   ├────────────┼────────────┼──────────┴───────────┴──────────┴──────────╯
-                                           &trans       &trans   &trans          &trans       &trans      &trans
-        //                                 ╰────────────┴────────┴────────╯      ╰────────────┴──────────┴────────╯
+                                           &trans     &trans       &trans       &trans       &trans       &trans
+        //                                 ╰──────────┴────────────┴────────╯   ╰────────────┴────────────┴──────────╯
             >;
         };
     };
