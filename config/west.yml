@@ -3,9 +3,6 @@ manifest:
     # Default ZMK firmware
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    # Nice view gem
-    - name: m165437
-      url-base: https://github.com/M165437
     - name: joelspadin
       url-base: https://github.com/joelspadin
   projects:
@@ -14,10 +11,6 @@ manifest:
       remote: zmkfirmware
       revision: v0.3
       import: app/west.yml
-    # Nice view gem
-    - name: nice-view-gem
-      remote: m165437
-      revision: v0.3.0
     # Locales
     - name: zmk-locales
       remote: joelspadin
